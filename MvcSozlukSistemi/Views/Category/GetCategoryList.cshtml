@@ -1,13 +1,24 @@
-﻿
+﻿@using Entity.Concrete
+@model List<Category>
 @{
     Layout = null;
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
 <table class="table table-hover">
     <tr>
         <th>DURUM</th>
         <th>ADI</th>
-        <th>AÇIKLAMA</th>
-    </tr>
    
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.CategoryStatus</td>
+    <td>@item.CategoryName</td>
+   
+
+</tr>
+    }
+
 </table>
