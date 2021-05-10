@@ -1,0 +1,21 @@
+﻿@model Entity.Concrete.Category
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+
+}
+
+<form class="form-group" method="post">
+    <input type="text" placeholder="Kategori Adı" name="CategoryName" class="form-control" />
+    <input type="text" placeholder="Açıklama" name="CategoryDescription" class="form-control" />
+    <br />
+    <button>Ekle</button>
+</form>
+<br />
+
+
