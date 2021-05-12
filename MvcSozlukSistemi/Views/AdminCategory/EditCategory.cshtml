@@ -1,0 +1,17 @@
+﻿@model Entity.Concrete.Category
+
+@{
+    ViewBag.Title = "EditCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Kategori Güncelleme Sayfası</h2>
+
+<form class="form-group" method="post">
+    <input type="hidden" name="CategoryId" class="form-control" value="@Model.CategoryId" />
+    <input type="text" name="CategoryName" class="form-control" value="@Model.CategoryName" />
+    <input type="text" name="CategoryDescription" class="form-control" value="@Model.CategoryDescription" />
+    <br />
+    <button class="btn btn-sm btn-outline-success">Güncelle</button>
+</form>
+<br />

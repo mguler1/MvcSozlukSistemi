@@ -43,5 +43,23 @@ namespace MvcSozlukSistemi.Controllers
             }
             return View();
         }
+        public ActionResult DeleteCategory(int id)
+        {
+            var category = cm.GetById(id);
+            cm.CategoryDelete(category);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult EditCategory(int id)
+        {
+            var category = cm.GetById(id);
+            return View(category);
+        }
+        [HttpPost]
+        public ActionResult UpdateCategory(Category x)
+        {
+            cm.CategoryUpdate(x);
+            return RedirectToAction("Index");
+        }
     }
 }
