@@ -56,7 +56,7 @@ namespace MvcSozlukSistemi.Controllers
             return View(category);
         }
         [HttpPost]
-        public ActionResult UpdateCategory(Category x)
+        public ActionResult EditCategory(Category x)
         {
             cm.CategoryUpdate(x);
             return RedirectToAction("Index");
