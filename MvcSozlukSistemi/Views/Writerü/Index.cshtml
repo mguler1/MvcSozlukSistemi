@@ -1,0 +1,35 @@
+﻿@using Entity.Concrete
+@model List<Writer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<table class="table table-bordered">
+<tr>
+
+    <th>ADI</th>
+    <th>SOYADI</th>
+    <th>MAİL</th>
+    <th>İŞLEMLER</th>
+
+</tr>
+@foreach (var item in Model)
+{
+    <tr>
+
+        <td>@item.WriterName</td>
+        <td>@item.WriterSurName</td>
+        <td>@item.WriterMail</td>
+
+        <td>
+            <a href="/AdminCategory/DeleteCategory/@item.WriterId" class="btn btn-sm btn-danger">Sil</a>
+            <a href="/AdminCategory/EditCategory/@item.WriterId" class="btn btn-sm btn-warning">Güncelle</a>
+            <a href="#" class="btn btn-sm btn-primary">Başlıklar</a>
+        </td>
+    </tr>
+}
+</table>
+<a class="btn btn-primary btn btn-sm" href="/AdminCategory/AddCategory">Yazar Ekle </a>
+
+
