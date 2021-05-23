@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202104162135485_ForeignKey.designer.cs">
       <DependentUpon>202104162135485_ForeignKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105230720407_writerAboutAdd.cs" />
+    <Compile Include="Migrations\202105230720407_writerAboutAdd.designer.cs">
+      <DependentUpon>202105230720407_writerAboutAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +92,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104162135485_ForeignKey.resx">
       <DependentUpon>202104162135485_ForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105230720407_writerAboutAdd.resx">
+      <DependentUpon>202105230720407_writerAboutAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
