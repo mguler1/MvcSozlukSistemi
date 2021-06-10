@@ -14,6 +14,7 @@ namespace MvcSozlukSistemi.Controllers
     public class WriterüController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterDal());
+        WriterValidator validationRules = new WriterValidator();
         public ActionResult Index()
         {
             var writervalues = wm.GetList();
@@ -27,11 +28,35 @@ namespace MvcSozlukSistemi.Controllers
         [HttpPost]
         public ActionResult AddWriter(Writer x)
         {
-            WriterValidator validationRules = new WriterValidator();
+           
             ValidationResult result = validationRules.Validate(x);
             if (result.IsValid)
             {
                 wm.WriterAdd(x);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditWriter(int id)
+        {
+            var writervalue = wm.GetById(id);
+            return View(writervalue);
+        }
+        [HttpPost]
+        public ActionResult EditWriter(Writer x)
+        {
+            ValidationResult result = validationRules.Validate(x);
+            if (result.IsValid)
+            {
+                wm.WriterUpdate(x);
                 return RedirectToAction("Index");
             }
             else
