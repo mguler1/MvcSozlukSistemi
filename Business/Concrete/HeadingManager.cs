@@ -1,11 +1,13 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entity;
+using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Business.Concrete
 {
@@ -30,7 +32,7 @@ namespace Business.Concrete
 
         public void HeadingDelete(Heading heading)
         {
-            _headingDal.Delete(heading);
+            _headingDal.Update(heading);
         }
 
         public void HeadingUpdate(Heading heading)
@@ -40,7 +42,7 @@ namespace Business.Concrete
 
         public void HeadingyAdd(Heading heading)
         {
-           _headingDal.Insert(heading);
+            _headingDal.Insert(heading);
         }
     }
 }

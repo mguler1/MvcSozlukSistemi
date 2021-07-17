@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HeadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WriterüController.cs" />
@@ -2277,6 +2278,9 @@
     <Content Include="Views\Writerü\AddWriter.cshtml" />
     <Content Include="Views\Writerü\EditWriter.cshtml" />
     <Content Include="Views\Head\Index.cshtml" />
+    <Content Include="Views\Head\AddHeading.cshtml" />
+    <Content Include="Views\Content\ContentByHeading.cshtml" />
+    <Content Include="Views\Head\EditHeading.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

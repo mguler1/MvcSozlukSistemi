@@ -1,0 +1,20 @@
+﻿@model Entity.Concrete.Heading
+@{
+    ViewBag.Title = "EditHeading";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Başlık Düzenle</h2>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<form class="form-group" method="post">
+    <input type="hidden" name="HeadingId" value="@Model.HeadingId" />
+    <input type="text" placeholder="Başlık Adı" name="HeadingName"value="@Model.HeadingName" class="form-control" />
+    <input type="text" placeholder="Tarih" name="HeadingDate"value="@Model.HeadingDate" class="form-control" />
+    <input type="text" placeholder="Yazar" name="WriterId"value="@Model.WriterId" class="form-control" />
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-sm btn-primary">Kaydet</button>
+</form>
+<br />
