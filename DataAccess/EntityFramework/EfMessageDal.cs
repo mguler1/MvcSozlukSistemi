@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityFramework
 {
-  public  class EfContactDal:GenericRepository<Contact>, IContactDal
+   public  class EfMessageDal: GenericRepository<Message>, IMessageDal
     {
-
     }
 }
