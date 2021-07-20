@@ -1,7 +1,6 @@
-﻿@model Entity.Concrete.Contact
-
+﻿@model Entity.Concrete.Message
 @{
-    ViewBag.Title = "GetContactDetails";
+    ViewBag.Title = "GetInBoxMessageDetails";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -16,7 +15,12 @@
                 <div class="col-sm-6">
                     <h1>Compose</h1>
                 </div>
-               
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Compose</li>
+                    </ol>
+                </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -25,12 +29,11 @@
         <div class="container-fluid">
             <div class="row">
                 @Html.Action("MessageMenu", "Contact")
-
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">Read Mail</h3>
+                            <h3 class="card-title">Mesajı Oku</h3>
                             <div class="card-tools">
                                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
                                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
@@ -44,8 +47,8 @@
                                 <div class="mailbox-read-info">
                                     <h5>Konu:@Model.Subject</h5>
                                     <h6>
-                                        Kimden:@Model.UserMail
-                                        <span class="mailbox-read-time float-right">15 Feb. 2015 11:03 PM</span>
+                                        Kimden:@Model.SenderMail
+                                        <span class="mailbox-read-time float-right">@Model.MessageDate.ToShortDateString()</span>
                                     </h6>
                                 </div>
                                 <!-- /.mailbox-read-info -->
@@ -68,7 +71,7 @@
                                 </div>
                                 <!-- /.mailbox-controls -->
                                 <div class="mailbox-read-message">
-                                    <p>@Model.Message</p>
+                                    <p>@Model.MessageContent</p>
 
                                 </div>
                                 <!-- /.mailbox-read-message -->
@@ -79,7 +82,7 @@
 
                     <!-- /.card -->
                 </div>
-            </div>     
+            </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->

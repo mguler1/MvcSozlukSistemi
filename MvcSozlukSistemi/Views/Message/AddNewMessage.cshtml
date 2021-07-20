@@ -1,4 +1,4 @@
-﻿
+﻿@model Entity.Concrete.Message
 @{
     ViewBag.Title = "AddNewMessage";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -42,6 +42,8 @@
                 @Html.Action("MessageMenu","Contact")
                 <!-- /.col -->
                 <div class="col-md-9">
+                    @using (Html.BeginForm("AddNewMessage", "Message", FormMethod.Post))
+                    {
                     <div class="card card-primary card-outline">
                         <div class="card-header">
                             <h3 class="card-title">Yeni Mesaj</h3>
@@ -49,13 +51,13 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="form-group">
-                                <input class="form-control" placeholder="Alıcı:">
+                                <input type="text"name="ReceiverMail" class="form-control" placeholder="Alıcı:">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Konu:">
+                                <input type="text" name="Subject" class="form-control" placeholder="Konu:">
                             </div>
                             <div class="form-group">
-                                <textarea id="compose-textarea" class="form-control" style="height: 300px">
+                                <textarea id="compose-textarea"name="MessageContent" class="form-control" style="height: 300px">
                                 
                                  
                     </textarea>
@@ -78,8 +80,10 @@
                         </div>
                         <!-- /.card-footer -->
                     </div>
+                    }
                     <!-- /.card -->
                 </div>
+                    
                 <!-- /.col -->
             </div>
             <!-- /.row -->
