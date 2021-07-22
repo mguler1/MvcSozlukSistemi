@@ -14,7 +14,7 @@ namespace MvcSozlukSistemi.Controllers
     public class AdminCategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
-        [Authorize()]
+        [Authorize(Roles ="A")]
         public ActionResult Index()
         {
             var category = cm.GetList();
