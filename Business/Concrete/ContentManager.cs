@@ -46,6 +46,11 @@ namespace Business.Concrete
             return _contentdal.List(x => x.HeadingId == id);
         }
 
+        public List<Content> GetListByWriter(int id)
+        {
+            return _contentdal.List(x => x.WriterId == id);
+        }
+
         Content IContentService.GetById(int id)
         {
             throw new NotImplementedException();
