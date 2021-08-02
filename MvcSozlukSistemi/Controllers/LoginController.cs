@@ -32,7 +32,27 @@ namespace MvcSozlukSistemi.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+        [HttpGet]
+        public ActionResult WriterLogin()
+        {
             return View();
+        }
+        [HttpPost]
+        public ActionResult WriterLogin(Writer a)
+        {
+            Context c = new Context();
+            var writeruserinfo = c.Writers .FirstOrDefault(x => x.WriterMail == a.WriterMail && x.WriterPassword == a.WriterPassword);
+            if (writeruserinfo != null)
+            {
+                FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
+                Session["Writermail"] = writeruserinfo.WriterMail;
+                return RedirectToAction("Index", "WriterPanelContent");
+            }
+            else
+            {
+                return RedirectToAction("WriterLogin");
+            }
         }
     }
 }
