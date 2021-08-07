@@ -1,10 +1,12 @@
 ﻿using Business.Concrete;
 using Business.ValidationRules;
+using DataAccess.Concrete;
 using DataAccess.EntityFramework;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,10 +17,10 @@ namespace MvcSozlukSistemi.Controllers
 
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator vm = new MessageValidator();
-
         public ActionResult Inbox()
         {
-            var messagelist = mm.GetListInbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = mm.GetListInbox(p);
             return View(messagelist);
         }
         public PartialViewResult MessageListMenu()
@@ -27,7 +29,8 @@ namespace MvcSozlukSistemi.Controllers
         }
         public ActionResult Sendbox()
         {
-            var messagelist = mm.GetListSendbox();
+            string p = (string)Session["WriterMail"];
+            var messagelist = mm.GetListSendbox(p);
             return View(messagelist);
         }
         public ActionResult GetInBoxMessageDetails(int id)
@@ -62,6 +65,8 @@ namespace MvcSozlukSistemi.Controllers
             //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
             //    }
             //}
+            string p = (string)Session["WriterMail"];
+            x.SenderMail = p;
             x.MessageDate = DateTime.Parse(DateTime.Now.ToString());
             mm.MessageAdd(x);
             return RedirectToAction("SendBox");

@@ -16,9 +16,9 @@ namespace MvcSozlukSistemi.Controllers
         // GET: Message
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator vm = new MessageValidator();
-        public ActionResult Inbox()
+        public ActionResult Inbox(string p)
         {
-            var messagelist = mm.GetListInbox();
+            var messagelist = mm.GetListInbox( p);
             return View(messagelist);
         }
         public ActionResult GetInBoxMessageDetails(int id)
@@ -31,9 +31,9 @@ namespace MvcSozlukSistemi.Controllers
             var messagedetails = mm.GetById(id);
             return View(messagedetails);
         }
-        public ActionResult Sendbox()
+        public ActionResult Sendbox(string p)
         {
-            var messagelist = mm.GetListSendbox();
+            var messagelist = mm.GetListSendbox(p);
             return View(messagelist);
         }
         [HttpGet]
