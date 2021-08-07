@@ -1,8 +1,20 @@
-﻿
+﻿@model Entity.Concrete.Writer  
 @{
     ViewBag.Title = "WriterProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h2>WriterProfile</h2>
-
+<h2>Profilim</h2>
+<form class="form-group" method="post">
+    <div class="form-control">
+        <input type="text" placeholder="Id" name="WriterId" value="@Model.WriterId" class="form-control" />
+        <input type="text" placeholder="Yazar Adı" name="WriterName" value="@Model.WriterName" class="form-control" />
+        <input type="text" placeholder="Yazar SoyAdı" name="WriterSurName" value="@Model.WriterSurName" class="form-control" />
+        <input type="text" placeholder="Yazar Resmi" name="WriterImage" value="@Model.WriterImage" class="form-control" />
+        <input type="text" placeholder="Yazar Mail" name="WriterMail" value="@Model.WriterMail" class="form-control" />
+        <input type="text" placeholder="Yazar Şifre" name="WriterPassword" value="@Model.WriterPassword" class="form-control" />
+        <input type="text" placeholder="Yazar Hakkında" name="WriterAbout" value="@Model.WriterAbout" class="form-control" />
+        <br />
+        <button class="btn btn-sm btn-outline-primary">Kaydet</button>
+    </div>
+</form>

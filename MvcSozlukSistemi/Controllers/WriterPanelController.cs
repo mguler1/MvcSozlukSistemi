@@ -9,6 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+
+using Business.ValidationRules;
+using FluentValidation.Results;
+
 namespace MvcSozlukSistemi.Controllers
 {
     public class WriterPanelController : Controller
@@ -16,10 +20,38 @@ namespace MvcSozlukSistemi.Controllers
         // GET: WriterPanel
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        WriterManager wm = new WriterManager(new EfWriterDal());
+       
+
         Context c = new Context();
-   
-        public ActionResult WriterProfile()
+        
+        [HttpGet]
+        public ActionResult WriterProfile(int id=0)
         {
+
+            string s = (string)Session["WriterMail"];
+            id = c.Writers.Where(x => x.WriterMail == s).Select(y => y.WriterId).FirstOrDefault();
+            var writervalue = wm.GetById(id);
+            return View(writervalue);
+        }
+       
+        [HttpPost]
+        public ActionResult WriterProfile(Writer x)
+        {
+            WriterValidator validationRules = new WriterValidator();
+            ValidationResult result = validationRules.Validate(x);
+            if (result.IsValid)
+            {
+                wm.WriterUpdate(x);
+                return RedirectToAction("AllHeading","WriterPanel");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
         }
         public ActionResult MyHeading(string s)
