@@ -1,4 +1,6 @@
-﻿using DataAccess.Concrete;
+﻿using Business.Concrete;
+using DataAccess.Concrete;
+using DataAccess.EntityFramework;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace MvcSozlukSistemi.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
+        WriterLoginManager lm = new WriterLoginManager(new EfWriterDal());
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -23,6 +26,7 @@ namespace MvcSozlukSistemi.Controllers
         {
             Context c = new Context();
             var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminUserName == a.AdminUserName && x.AdminPassword == a.AdminPassword);
+
             if (adminuserinfo!=null)
             {
                 FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName,false);
@@ -42,8 +46,7 @@ namespace MvcSozlukSistemi.Controllers
         [HttpPost]
         public ActionResult WriterLogin(Writer a)
         {
-            Context c = new Context();
-            var writeruserinfo = c.Writers .FirstOrDefault(x => x.WriterMail == a.WriterMail && x.WriterPassword == a.WriterPassword);
+            var writeruserinfo = lm.GetWriter(a.WriterMail, a.WriterPassword);
             if (writeruserinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(writeruserinfo.WriterMail, false);
