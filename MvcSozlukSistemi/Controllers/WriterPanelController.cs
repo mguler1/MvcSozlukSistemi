@@ -15,14 +15,20 @@ namespace MvcSozlukSistemi.Controllers
         // GET: WriterPanel
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        Context c = new Context();
+   
         public ActionResult WriterProfile()
         {
             return View();
         }
-        public ActionResult MyHeading()
+        public ActionResult MyHeading(string s)
         {
-           //id=
-            var values = hm.GetListByWriter();
+            
+            s = (string)Session["WriterMail"];
+          var  writeridgvalues = c.Writers.Where(x => x.WriterMail == s).Select(y => y.WriterId).FirstOrDefault();
+           
+          //  ViewBag.d = writeridgvalues;
+            var values = hm.GetListByWriter(writeridgvalues);
             return View(values);
         }
         [HttpGet]
@@ -40,8 +46,11 @@ namespace MvcSozlukSistemi.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading x)
         {
+            string m = (string)Session["WriterMail"];
+            var writeridgvalues = c.Writers.Where(a => a.WriterMail == m).Select(y => y.WriterId).FirstOrDefault();
+            ViewBag.d = writeridgvalues;
             x.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            x.WriterId = 4;
+            x.WriterId = writeridgvalues;
             x.HeadingStatus = true;
             hm.HeadingyAdd(x);
             return RedirectToAction("MyHeading");
@@ -63,14 +72,19 @@ namespace MvcSozlukSistemi.Controllers
         public ActionResult EditHeading(Heading x)
         {
             hm.HeadingUpdate(x);
-            return RedirectToAction("Index");
+            return RedirectToAction("MyHeading");
         }
         public ActionResult DeleteHeading(int id)
         {
             var deleteheading = hm.GetById(id);
             deleteheading.HeadingStatus = false;
             hm.HeadingDelete(deleteheading);
-            return RedirectToAction("Index");
+            return RedirectToAction("MyHeading");
+        }
+        public ActionResult AllHeading()
+        {
+            var headings = hm.GetList();
+            return View(headings);
         }
     }
 }

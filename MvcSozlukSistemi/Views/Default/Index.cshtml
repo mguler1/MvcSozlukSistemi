@@ -1,9 +1,7 @@
 ﻿@using Entity.Concrete
 @model List<Content>
-@{
-    ViewBag.Title = "MyContent";
-    Layout = "~/Views/Shared/_WriterLayout.cshtml";
-}
+
+
 
 <!DOCTYPE html>
 <html>
@@ -21,10 +19,8 @@
                             <!-- timeline time label -->
                             @foreach (var item in Model)
                             {
-
-
                                 <div class="time-label">
-                                    <span class="bg-success">@item.ContentDate.ToShortDateString()</span>
+                                    <span class="bg-success">@item.ContentDate.ToShortDateString() - @item.Writer.WriterName @item.Writer.WriterSurName</span>
                                 </div>
                                 <!-- /.timeline-label -->
                                 <!-- timeline item -->
@@ -54,6 +50,7 @@
     <!-- ./wrapper -->
 </body>
 </html>
+
 
 
 

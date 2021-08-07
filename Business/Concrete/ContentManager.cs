@@ -23,7 +23,7 @@ namespace Business.Concrete
         
         public void ContentDelete(Content content)
         {
-            throw new NotImplementedException();
+            _contentdal.Delete(content);
         }
 
         public void ContentUpdate(Content content)

@@ -1,0 +1,19 @@
+﻿@model Entity.Concrete.Content
+@{
+    ViewBag.Title = "AddContent";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<h1>İçerik Girişi</h1>
+<br />
+<form class="form-group" method="post">
+    <input  type="text"name="HeadingId"value="@ViewBag.d"/>
+    <textarea type="text" placeholder="İçerik" name="ContentValue" class="form-control" />
+    <br />
+    <button class="btn btn-sm btn-outline-primary">Kaydet</button>
+</form>
+<br />
+
+

@@ -30,9 +30,9 @@ namespace Business.Concrete
             return _headingDal.List();
         }
 
-        public List<Heading> GetListByWriter()
+        public List<Heading> GetListByWriter(int id)
         {
-            return _headingDal.List(x => x.WriterId == 1);
+            return _headingDal.List(x => x.WriterId == id);
         }
 
         public void HeadingDelete(Heading heading)
