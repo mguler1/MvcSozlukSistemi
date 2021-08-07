@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
+using PagedList.Mvc;
 namespace MvcSozlukSistemi.Controllers
 {
     public class WriterPanelController : Controller
@@ -81,9 +82,9 @@ namespace MvcSozlukSistemi.Controllers
             hm.HeadingDelete(deleteheading);
             return RedirectToAction("MyHeading");
         }
-        public ActionResult AllHeading()
+        public ActionResult AllHeading(int p=1)
         {
-            var headings = hm.GetList();
+            var headings = hm.GetList().ToPagedList(p,10);
             return View(headings);
         }
     }
