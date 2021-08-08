@@ -1,0 +1,15 @@
+﻿@model Entity.Concrete.Admin
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <input type="text" placeholder="Admin Adı" name="AdminUserName" class="form-control" />
+    <input type="text" placeholder="Şifre" name="AdminPassword" class="form-control" />
+    <input type="text" placeholder="Role" name="AdminRole" class="form-control" />
+    <br />
+    <button class="btn btn-sm btn-outline-primary">Ekle</button>
+</form>
+<br />
+
